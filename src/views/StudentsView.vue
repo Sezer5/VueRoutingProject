@@ -25,10 +25,12 @@ export default {
   data(){
     return{
       students:[
-        {name:'Sezer',id:1},
-        {name:'Seda',id:2}
+       
       ]
     }
+  },
+  mounted(){
+      fetch('http://localhost:3000/students').then(res => res.json()).then(data=>this.students=data).catch(err => console.log(err.message))
   }
 }
 </script>
