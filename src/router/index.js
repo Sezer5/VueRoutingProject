@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import StudentsView from '../views/StudentsView.vue'
 import StudentDetail from '../views/StudentDetail.vue'
+import NotFound from '../views/NotFound.vue'
 
 const routes = [
   {
@@ -13,7 +14,7 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    component: AboutView
+    component: () => import('../views/AboutView.vue'),
   },
   {
     path: '/students',
@@ -22,8 +23,18 @@ const routes = [
   },
   {
     path: '/students/:id',
-    name: 'StudentsDetail',
-    component: StudentDetail
+    name: 'StudentDetail',
+    component: StudentDetail,
+    props:true
+  },
+  {
+    path: '/studentsList',
+    redirect: '/students',
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
