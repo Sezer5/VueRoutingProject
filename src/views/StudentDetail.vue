@@ -1,12 +1,15 @@
 <template>
-    <h1>Öğrenci Detayları</h1>
-    <div v-if="student">
-        <h3>Öğrenci Adı: {{student.name}}</h3>
+        <div class="studentsDetail">
+
+
+        <h1>Öğrenci Detayları</h1>
+        <div v-if="student">
+            <h3>Öğrenci Adı: {{student.name}}</h3>
+        </div>
+        <div v-else>
+            Bilgi Yükleniyor
+        </div>
     </div>
-    <div v-else>
-        Bilgi Yükleniyor
-    </div>
-    
 </template>
 
 <script>
@@ -33,5 +36,12 @@ export default {
 </script>
 
 <style>
-
+    .studentsDetail,.home{
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+        max-width: 600px;
+        width: 100%;
+        padding: 30px;
+        border-radius: 20px;
+        margin:20px auto;
+    }
 </style>
