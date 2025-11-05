@@ -4,7 +4,7 @@
       <h2>Öğrencilerim</h2>
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non ut inventore reprehenderit, dolor sit ratione illo assumenda laboriosam quod, cum voluptates dolores blanditiis nisi molestias reiciendis in quaerat! Nam, dolores.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus nam at ipsam neque iste dolor vero. Sed reiciendis exercitationem eos, deserunt vel nisi ipsa vero quos voluptatum itaque, maxime molestias.</p>
-      <div v-for="student in students">
+      <div v-for="student in student">
           
           <router-link :to="{name:'StudentDetail' ,params:{id:student.id}}">
               <h2>{{student.name}}</h2>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 
 export default {
   name: 'StudentsView',
@@ -24,13 +24,18 @@ export default {
   },
   data(){
     return{
-      students:[
+      student:[
        
       ]
     }
   },
   mounted(){
-      fetch('http://localhost:3000/students').then(res => res.json()).then(data=>this.students=data).catch(err => console.log(err.message))
+      axios.get('http://localhost:3000/students/')
+        .then(response => this.student=response.data)
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        });
   }
 }
 </script>

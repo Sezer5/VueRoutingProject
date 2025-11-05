@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     props:['id'],
     data(){
@@ -18,7 +19,14 @@ export default {
         }
     },
     mounted(){
-      fetch('http://localhost:3000/students/'+this.id).then(res => res.json()).then(data=>this.student=data).catch(err => console.log(err.message))
+    //   fetch('http://localhost:3000/students/'+this.id).then(res => res.json()).then(data=>this.student=data).catch(err => console.log(err.message)),
+            axios.get('http://localhost:3000/students/'+this.id)
+        .then(response => this.student=response.data)
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        });
+
   },
     
 }
